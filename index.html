@@ -6,7 +6,7 @@
 <title>Ansiedade e stress nos estudantes</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---main:#12294a;--sky:#b0832f;--tint:#f3f5f9;--tint2:#e3e8f0;--text:#232630;--muted:#5d6270;--line:#d5dce6;color-scheme:light}
+--main:#102a4c;--main2:#1d4373;--sky:#b57f1f;--gold-l:#e6b95a;--cream:#fbf6ea;--tint:#f4f6fb;--tint2:#e2e9f4;--text:#222733;--muted:#5a6272;--line:#d9e0ec;--shadow:0 6px 18px rgba(16,42,76,.12);color-scheme:light}
 
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*:before,*:after{box-sizing:inherit}
@@ -58,6 +58,94 @@ li a{color:var(--main);font-weight:600}
 .pager a{color:var(--main);font-weight:600;text-decoration:none}
 footer{background:var(--tint);color:var(--muted);font-size:.85rem;padding:1.2rem 0;text-align:center;border-top:1px solid var(--line)}
 @media (max-width:700px){.facts,.two,.hero{grid-template-columns:1fr}.steps{flex-direction:column}.steps i{transform:rotate(90deg)}nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;flex:none}.banner{padding:2rem 0}h2{font-size:1.45rem}.view{padding:1.4rem 0 2.5rem}}
+
+/* ===== Menu móvel (hambúrguer) ===== */
+.menu-btn{display:none;background:rgba(255,255,255,.12);border:0;border-radius:10px;width:40px;height:40px;padding:0;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;-webkit-tap-highlight-color:transparent}
+.menu-btn:active{background:rgba(255,255,255,.22)}
+.menu-btn span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:transform .2s,opacity .2s}
+header.open .menu-btn span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+header.open .menu-btn span:nth-child(2){opacity:0}
+header.open .menu-btn span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:700px){
+header{border-bottom:3px solid var(--sky);box-shadow:0 4px 14px rgba(18,41,74,.25)}
+.top{display:grid;grid-template-columns:1fr auto;grid-template-areas:"sub btn" "logo btn";align-items:center;column-gap:.8rem;row-gap:.1rem;padding:.7rem 0}
+.sub{grid-area:sub;display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#e0b865;font-weight:700}
+.logo{grid-area:logo;font-size:1.02rem;line-height:1.25}
+.menu-btn{grid-area:btn;display:flex}
+nav{display:none;flex-direction:column;flex-wrap:nowrap;overflow:visible;padding:.2rem 0 .7rem;border-top:1px solid rgba(255,255,255,.15);max-height:calc(100vh - 100px);overflow-y:auto;counter-reset:m}
+header.open nav{display:flex}
+nav a{counter-increment:m;white-space:normal;margin:0;padding:.8rem .6rem;border-radius:0;font-size:1rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:.8rem}
+nav a::before{content:"0" counter(m);font:.7rem "Courier New",monospace;color:#e0b865;opacity:.9}
+nav a:last-child{border-bottom:0}
+nav a.on{background:rgba(255,255,255,.14);color:#fff;font-weight:700;box-shadow:inset 3px 0 0 var(--sky)}
+.wrap{padding:0 1.1rem}
+body{font-size:15.5px}
+.banner h1{font-size:1.7rem}
+.btn{padding:.7rem 1.3rem}
+}
+
+/* ===== Botões, bordas e cartões ===== */
+::selection{background:var(--tint2);color:var(--main)}
+a,button{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:2px solid var(--main2);outline-offset:2px}
+header a:focus-visible,header button:focus-visible{outline-color:#fff}
+.banner{background:linear-gradient(135deg,var(--tint) 0%,var(--cream) 100%);border-bottom:3px solid var(--sky)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;background:linear-gradient(135deg,var(--main2),var(--main));color:#fff;padding:.75rem 1.5rem;border-radius:999px;font-weight:700;letter-spacing:.01em;box-shadow:0 6px 16px rgba(16,42,76,.28);border:2px solid transparent;transition:transform .15s,box-shadow .15s,background .15s}
+.btn::after{content:"→";color:var(--gold-l);font-size:1.1em;transition:transform .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(16,42,76,.34)}
+.btn:hover::after{transform:translateX(4px)}
+.btn:active{transform:translateY(0);box-shadow:0 3px 8px rgba(16,42,76,.3)}
+.pager{border-top:2px solid var(--line);gap:.7rem}
+.pager a{display:inline-flex;align-items:center;padding:.6rem 1.2rem;border:2px solid var(--main);border-radius:999px;color:var(--main);background:#fff;font-weight:700;transition:background .15s,color .15s,transform .15s}
+.pager a:hover{background:var(--main);color:#fff;transform:translateY(-1px)}
+.pager a:active{transform:none}
+h2{position:relative;padding-bottom:.6rem}
+h2::after{content:"";display:block;width:56px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--sky),var(--gold-l));margin-top:.6rem}
+.note{background:var(--cream);border:1px solid #ecdcb4;border-left:5px solid var(--sky);border-radius:12px;box-shadow:0 2px 8px rgba(16,42,76,.06)}
+.facts div{background:#fff;border:1px solid var(--line);border-top:4px solid var(--sky);border-radius:14px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+.facts b{color:var(--main2)}
+.steps div{background:linear-gradient(160deg,var(--main2),var(--main));border-radius:14px;box-shadow:var(--shadow)}
+.steps i{color:var(--sky)}
+.poster{background:linear-gradient(150deg,var(--main2),var(--main));border-radius:18px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.12)}
+.poster li{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08)}
+.poster li::before{background:linear-gradient(135deg,var(--gold-l),var(--sky));color:var(--main)}
+.scroll{border:1px solid var(--line);border-radius:12px;box-shadow:0 2px 8px rgba(16,42,76,.06)}
+.scroll table{margin:0}
+th{background:var(--main);color:#fff;border-bottom:0}
+tbody tr:nth-child(even) td{background:var(--tint)}
+td{border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+footer{background:var(--main);color:#d3dcec;border-top:3px solid var(--sky)}
+header{background:linear-gradient(180deg,var(--main2) -80%,var(--main) 70%)}
+nav a{transition:background .15s}
+nav a.on{box-shadow:none}
+@media (max-width:700px){
+nav a.on{box-shadow:none;background:#fff;color:var(--main)}
+nav a.on::before{color:var(--main2)}
+.btn{padding:.8rem 1.5rem}
+.pager a{flex:1;justify-content:center;text-align:center}
+}
+
+/* ===== Figuras e infografias ===== */
+figure.fig{margin:1.5rem 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem .8rem;box-shadow:var(--shadow);text-align:center}
+figure.fig svg{width:100%;max-width:520px;height:auto}
+figure.fig figcaption{font-size:.85rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+.fig text{font-family:Calibri,"Segoe UI",Arial,sans-serif;fill:var(--text);font-size:13px}
+.fig .t{font-weight:700;fill:var(--main)}.fig .s{font-size:11px;fill:var(--muted)}.fig .w{fill:#fff;font-weight:700}
+.fig .a{fill:var(--main)}.fig .b{fill:var(--sky)}.fig .c{fill:var(--tint2);stroke:var(--main);stroke-width:1.5}
+.fig .ln{stroke:var(--muted);stroke-width:1.2;fill:none}
+@media (max-width:420px){figure.fig{padding:.8rem .3rem}.fig text{font-size:14px}.fig .s{font-size:12px}}
+.fig .l{fill:var(--main2);opacity:.3}.fig .heart{transform-box:fill-box;transform-origin:center;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@media (prefers-reduced-motion:reduce){.fig .heart{animation:none}}
+.bwrap{position:relative;width:190px;height:190px;margin:0 auto;display:grid;place-items:center}
+.bcirc{position:absolute;width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--main2),var(--main));box-shadow:0 0 0 12px var(--tint2);animation:br 8s ease-in-out infinite}
+.bwrap span{position:absolute;color:#fff;font-weight:700;font-size:.85rem;line-height:1.2;text-align:center}
+.bwrap .l1{animation:fa 8s infinite}.bwrap .l2{animation:fb 8s infinite}
+@keyframes br{0%,100%{transform:scale(.7)}50%{transform:scale(1.45)}}
+@keyframes fa{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+@keyframes fb{0%,45%{opacity:0}50%,95%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.bcirc,.bwrap span{animation:none}.bwrap .l2{opacity:0}}
 @media not all{
 :root{--text:#111;--muted:#333}
 ::selection{background:var(--sky);color:#fff}
@@ -113,7 +201,7 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 </head>
 <body>
 <header><div class="wrap">
-<div class="top"><a class="logo" href="#inicio">Ansiedade e stress nos estudantes</a><span class="sub">Tema 14 · Saúde mental</span></div>
+<div class="top"><a class="logo" href="#inicio">Ansiedade e stress nos estudantes</a><span class="sub">Tema 14 · Saúde mental</span><button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button></div>
 <nav id="nav"><a href="#inicio">Início</a><a href="#introducao">Introdução</a><a href="#objectivos">Objectivos</a><a href="#desenvolvimento">Desenvolvimento</a><a href="#solucoes">Soluções</a><a href="#recomendacoes">Recomendações</a><a href="#conclusao">Conclusão</a><a href="#referencias">Referências</a></nav>
 </div></header>
 
@@ -154,6 +242,18 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 </table></div>
 <h3>Stress bom e stress mau</h3>
 <p>Nem todo o stress é prejudicial. Antes de um teste, um pouco de nervosismo põe-nos atentos e dá energia para estudar. O stress passa a ser um problema quando dura semanas, quando não conseguimos descansar e quando começa a afectar o sono, o humor e as notas. É nessa altura que se transforma, muitas vezes, em ansiedade.</p>
+<figure class="fig"><svg viewBox="0 0 360 250" role="img" aria-label="Gráfico: o rendimento nos estudos sobe com um pouco de pressão e desce quando a pressão é demais">
+<rect x="135" y="20" width="110" height="170" rx="8" fill="var(--sky)" opacity=".15"/>
+<path class="ln" d="M40 20V190H345"/>
+<path d="M50 180C100 180 130 40 190 40C250 40 280 180 335 180" fill="none" stroke="var(--main)" stroke-width="4" stroke-linecap="round"/>
+<circle class="b" cx="190" cy="40" r="6"/>
+<text class="s" x="190" y="30" text-anchor="middle">ponto ideal</text>
+<text class="t" x="85" y="208" text-anchor="middle">Pouco stress</text><text class="s" x="85" y="222" text-anchor="middle">falta de motivação</text>
+<text class="t" x="190" y="208" text-anchor="middle">Stress bom</text><text class="s" x="190" y="222" text-anchor="middle">atenção e energia</text>
+<text class="t" x="290" y="208" text-anchor="middle">Stress demais</text><text class="s" x="290" y="222" text-anchor="middle">cansaço e ansiedade</text>
+<text class="s" x="190" y="243" text-anchor="middle">Quantidade de pressão →</text>
+<text class="s" transform="translate(14 105) rotate(-90)" text-anchor="middle">Rendimento</text></svg>
+<figcaption>Um pouco de pressão ajuda a estudar. Quando passa do ponto, o rendimento desce.</figcaption></figure>
 <h3>Porque interessa à escola</h3>
 <p>Um aluno ansioso tem dificuldade em prestar atenção e em lembrar-se da matéria. Também falta mais e pode acabar por desistir. Por isso o assunto interessa a professores e à direcção, e não apenas à família.</p>
 <p>A própria OMS refere que a ansiedade e a depressão podem afectar muito a assiduidade e o rendimento escolar.</p>
@@ -181,6 +281,25 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 <div class="steps"><div>Pressão<small>testes, família, colegas</small></div><i>→</i><div>Stress contínuo<small>sem descanso nem apoio</small></div><i>→</i><div>Ansiedade<small>medo e preocupação</small></div><i>→</i><div>Efeitos na escola<small>notas e faltas</small></div></div>
 <h3>O que acontece no corpo</h3>
 <p>Quando sentimos pressão, o corpo prepara-se para reagir, como se estivesse em perigo. Liberta hormonas, como a adrenalina e o cortisol, o coração bate mais depressa, a respiração fica curta e os músculos tensos. Por isso quem está ansioso pode sentir tremores, suor, aperto no peito ou vontade de ir à casa de banho antes de um teste. Se isto acontece todos os dias, o corpo não descansa e a pessoa fica esgotada.</p>
+<figure class="fig"><svg viewBox="0 0 360 330" role="img" aria-label="Silhueta de um corpo humano com as partes onde o stress se sente: cabeça, pulmões, coração, barriga, ombros e mãos">
+<g stroke-linecap="round" fill="none"><path d="M134 94L98 190M226 94L262 190M162 208L158 298M198 208L202 298" stroke="var(--main)" stroke-width="22"/><path d="M134 94L98 190M226 94L262 190M162 208L158 298M198 208L202 298" stroke="var(--tint2)" stroke-width="19"/></g>
+<ellipse class="c" cx="152" cy="306" rx="15" ry="6"/><ellipse class="c" cx="208" cy="306" rx="15" ry="6"/>
+<rect class="c" x="172" y="54" width="16" height="26" rx="4"/>
+<path class="c" d="M146 76Q180 66 214 76Q230 82 230 102L224 170Q222 184 216 194L218 214H142L144 194Q138 184 136 170L130 102Q130 82 146 76Z"/>
+<ellipse class="c" cx="180" cy="36" rx="19" ry="23"/>
+<ellipse class="b" cx="180" cy="31" rx="13" ry="9" opacity=".9"/>
+<ellipse class="l" cx="160" cy="106" rx="13" ry="22"/><ellipse class="l" cx="202" cy="106" rx="13" ry="22"/>
+<ellipse class="b" cx="172" cy="160" rx="13" ry="9" opacity=".85"/>
+<g transform="translate(186 126) scale(1.3)"><path class="b heart" d="M0 6C-12-3-8-13 0-7C8-13 12-3 0 6Z"/></g>
+<path class="ln" d="M160 96H96M188 126H96M172 160H96M194 34H252M222 88H252M270 192H278"/>
+<g class="a"><circle cx="160" cy="96" r="3"/><circle cx="188" cy="126" r="3"/><circle cx="172" cy="160" r="3"/><circle cx="194" cy="34" r="3"/><circle cx="222" cy="88" r="3"/><circle cx="270" cy="192" r="3"/></g>
+<text class="t" x="92" y="93" text-anchor="end">Respiração</text><text class="s" x="92" y="107" text-anchor="end">curta e rápida</text>
+<text class="t" x="92" y="123" text-anchor="end">Coração</text><text class="s" x="92" y="137" text-anchor="end">mais rápido</text>
+<text class="t" x="92" y="157" text-anchor="end">Barriga</text><text class="s" x="92" y="171" text-anchor="end">dor ou enjoo</text>
+<text class="t" x="256" y="31">Cabeça</text><text class="s" x="256" y="45">dor, pouca atenção</text>
+<text class="t" x="256" y="85">Músculos</text><text class="s" x="256" y="99">tensos nos ombros</text>
+<text class="t" x="282" y="189">Mãos</text><text class="s" x="282" y="203">tremor e suor</text></svg>
+<figcaption>Como o corpo reage à pressão quando ela dura muito tempo.</figcaption></figure>
 <h3>Quando costuma aumentar</h3>
 <ul>
 <li>Na época de testes e de exames.</li>
@@ -193,6 +312,15 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 <p><b>Entre colegas:</b> bullying, exclusão, cyberbullying e a comparação com o que os outros mostram nas redes sociais.</p>
 <p><b>Em casa:</b> expectativas muito altas dos pais, discussões, falta de dinheiro e muitas tarefas domésticas, que tiram tempo ao estudo.</p>
 <p><b>Na própria pessoa:</b> dormir pouco, não saber organizar o tempo e ter pouca confiança em si.</p>
+<figure class="fig"><svg viewBox="0 0 360 280" role="img" aria-label="Mapa das causas do stress e da ansiedade nos estudantes">
+<path class="ln" d="M180 64V96M180 184V216M116 140H136M224 140H244"/>
+<circle class="a" cx="180" cy="140" r="44"/>
+<text class="w" x="180" y="137" text-anchor="middle">Stress e</text><text class="w" x="180" y="153" text-anchor="middle">ansiedade</text>
+<rect class="c" x="120" y="10" width="120" height="54" rx="12"/><text class="t" x="180" y="34" text-anchor="middle">Na escola</text><text class="s" x="180" y="50" text-anchor="middle">testes, exames</text>
+<rect class="c" x="244" y="113" width="112" height="54" rx="12"/><text class="t" x="300" y="137" text-anchor="middle">Entre colegas</text><text class="s" x="300" y="153" text-anchor="middle">bullying, redes</text>
+<rect class="c" x="120" y="216" width="120" height="54" rx="12"/><text class="t" x="180" y="240" text-anchor="middle">Em casa</text><text class="s" x="180" y="256" text-anchor="middle">pressão, dinheiro</text>
+<rect class="c" x="4" y="113" width="112" height="54" rx="12"/><text class="t" x="60" y="137" text-anchor="middle">Na pessoa</text><text class="s" x="60" y="153" text-anchor="middle">sono, organização</text></svg>
+<figcaption>As causas raramente vêm sozinhas: costumam juntar-se.</figcaption></figure>
 <h3>Sinais de alerta</h3>
 <div class="two">
 <div><b>No corpo e nas emoções</b><ul><li>Dores de cabeça ou de barriga sem razão clara</li><li>Dificuldade em adormecer</li><li>Cansaço constante</li><li>Irritação, tristeza, choro fácil</li></ul></div>
@@ -242,6 +370,8 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 <p><b>Depois:</b> evitar ficar a comparar todas as respostas com os colegas. O que está feito já não se pode mudar, e o melhor é descansar.</p>
 <h3>Respiração para acalmar</h3>
 <p>Quando sentir o coração acelerado antes de um teste: sente-se com as costas direitas, inspire pelo nariz contando até quatro, expire devagar pela boca contando até quatro. Repita cinco vezes.</p>
+<figure class="fig"><div class="bwrap" role="img" aria-label="Círculo animado que cresce e diminui para guiar a respiração"><div class="bcirc"></div><span class="l1">Inspira<br>4 seg</span><span class="l2">Expira<br>4 seg</span></div>
+<figcaption>Acompanha o círculo: inspira quando ele cresce, expira quando diminui. Repete cinco vezes.</figcaption></figure>
 <h3>Como ajudar um colega que está mal</h3>
 <ul>
 <li>Ouvir sem interromper e sem julgar.</li>
@@ -275,6 +405,9 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 <h2>Conclusão</h2>
 <p>Pela pesquisa que fizemos, vimos que a ansiedade e o stress são comuns entre estudantes e que têm causas na escola, em casa, entre colegas e na própria pessoa. Quando ninguém ajuda, afectam as notas, as amizades e a saúde.</p>
 <p>Vimos também que há maneiras de prevenir. Dormir bem, organizar os estudos, ter professores atentos, famílias que ouvem e uma escola onde se pode falar do assunto já ajudam muito.</p>
+<figure class="fig"><svg viewBox="0 0 360 130" role="img" aria-label="Pictograma: 1 em cada 7 adolescentes tem um problema de saúde mental"><g class="b" transform="translate(30 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(80 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(130 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(180 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(230 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(280 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g><g class="c" transform="translate(330 0)"><circle cx="0" cy="30" r="11"/><path d="M-17 86Q-17 50 0 50Q17 50 17 86Z"/></g>
+<text class="t" x="180" y="112" text-anchor="middle" style="font-size:14px">1 em cada 7 adolescentes (10 a 19 anos)</text></svg>
+<figcaption>Tem algum problema de saúde mental. Fonte: Organização Mundial da Saúde.</figcaption></figure>
 <h3>Resultados principais da pesquisa</h3>
 <ul>
 <li>Cerca de 1 em cada 7 adolescentes tem algum problema de saúde mental, e a ansiedade é o mais frequente.</li>
@@ -306,14 +439,33 @@ nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
 <script>
 (function(){
 var ids=["inicio","introducao","objectivos","desenvolvimento","solucoes","recomendacoes","conclusao","referencias"];
-function show(){
-var h=(location.hash||"#inicio").slice(1);if(ids.indexOf(h)<0)h="inicio";
+var hd=document.querySelector("header"),mb=document.getElementById("menuBtn");
+function setMenu(o){hd.classList.toggle("open",o);mb.setAttribute("aria-expanded",o)}
+function render(h){
+if(ids.indexOf(h)<0)h="inicio";
 ids.forEach(function(i){document.getElementById("v-"+i).classList.toggle("on",i===h)});
 var l=document.querySelectorAll("#nav a");
 for(var k=0;k<l.length;k++){l[k].classList.toggle("on",l[k].getAttribute("href")==="#"+h)}
 window.scrollTo(0,0);
 }
-window.addEventListener("hashchange",show);show();
+function fromHash(){render((location.hash||"#inicio").slice(1))}
+function go(h){
+setMenu(false);
+render(h);
+try{history.replaceState(null,"","#"+h)}catch(e){try{location.hash=h}catch(e2){}}
+}
+document.addEventListener("click",function(e){
+var a=e.target.closest?e.target.closest('a[href^="#"]'):null;
+if(!a)return;
+var h=a.getAttribute("href").slice(1);
+if(ids.indexOf(h)<0)return;
+e.preventDefault();
+go(h);
+});
+mb.addEventListener("click",function(){setMenu(!hd.classList.contains("open"))});
+window.addEventListener("resize",function(){if(window.innerWidth>700)setMenu(false)});
+window.addEventListener("hashchange",fromHash);
+fromHash();
 })();
 </script>
 </body>
