@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ansiedade e stress nos estudantes</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--main:#12294a;--sky:#b0832f;--tint:#f3f5f9;--tint2:#e3e8f0;--text:#232630;--muted:#5d6270;--line:#d5dce6;color-scheme:light}
+
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;overflow-wrap:break-word;background:#fff;color:var(--text);font:16px/1.7 Calibri,"Segoe UI",Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--main);z-index:10}
+.wrap{max-width:960px;margin:auto;padding:0 1.2rem}
+header{background:var(--main);position:sticky;top:env(safe-area-inset-top,0px);z-index:9}
+.top{display:flex;justify-content:space-between;align-items:baseline;padding:.8rem 0 .2rem;gap:1rem;flex-wrap:wrap}
+.logo{font:700 1.2rem Georgia,"Times New Roman",serif;color:#fff;text-decoration:none}
+.sub{font-size:.8rem;color:#d9d3f0}
+.pal{display:flex;gap:.5rem;align-items:center;font-size:.8rem;color:#d9d3f0}
+.pal button{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.55);padding:0;cursor:pointer}
+.pal button.on{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+nav{display:flex;flex-wrap:wrap;gap:0 .2rem;padding-bottom:.3rem}
+nav a{color:#e6e1f6;text-decoration:none;font-size:.9rem;padding:.3rem .9rem;border-radius:999px;margin:.3rem 0}
+nav a:hover{background:rgba(255,255,255,.16);color:#fff}
+nav a.on{background:#fff;color:var(--main);font-weight:700}
+.view{display:none;padding:2rem 0 3rem}.view.on{display:block}
+.banner{background:var(--tint);padding:3rem 0;border-bottom:1px solid var(--line)}
+.banner h1{font:700 clamp(1.8rem,4.5vw,2.5rem)/1.2 Georgia,serif;margin:0 0 1rem;max-width:680px;color:var(--main)}
+.banner p{max-width:620px;margin:0 0 1.4rem}
+.btn{display:inline-block;background:var(--main);color:#fff;text-decoration:none;padding:.6rem 1.3rem;border-radius:999px;font-weight:600}
+h2{font:700 1.7rem Georgia,serif;color:var(--main);margin:0 0 1rem}
+h3{font:700 1.1rem Georgia,serif;color:var(--main);margin:1.6rem 0 .4rem}
+p{margin:.6rem 0}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:2rem 0}
+.facts b{display:block;font:700 2rem Georgia,serif;color:var(--sky)}
+table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:.6rem .8rem;text-align:left;vertical-align:top}
+th{background:var(--tint2);color:var(--main)}
+.scroll{overflow-x:auto}
+.note{background:var(--tint);border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+ul,ol{padding-left:1.3rem}li{margin:.3rem 0}
+.steps{display:flex;gap:.5rem;align-items:stretch;margin:1rem 0}
+.steps div{flex:1;background:var(--main);color:#fff;border-radius:12px;padding:.8rem;text-align:center;font-size:.95rem;font-weight:600}
+.steps small{display:block;font-weight:400;color:#ddd7f3;margin-top:.2rem}
+.steps i{align-self:center;color:var(--sky);font-style:normal;font-weight:700;font-size:1.4rem}
+li a{color:var(--main);font-weight:600}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
+.hero svg{width:100%;max-width:320px;height:auto;justify-self:center}
+.il .a{fill:var(--main)}.il .b{fill:var(--sky)}.il .c{fill:var(--tint2)}.il .d{fill:#fff;stroke:var(--main);stroke-width:2}
+.poster{background:var(--main);color:#fff;border-radius:14px;padding:1.4rem;margin:1.2rem 0 1.8rem}
+.poster h4{margin:0 0 1rem;font:700 1.2rem Georgia,serif}
+.poster ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;counter-reset:n}
+.poster li{background:rgba(255,255,255,.1);border-radius:10px;padding:.8rem;counter-increment:n;font-size:.92rem;margin:0}
+.poster li::before{content:counter(n);display:flex;width:28px;height:28px;border-radius:50%;background:var(--sky);color:#fff;font-weight:700;align-items:center;justify-content:center;margin-bottom:.4rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.pager{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line)}
+.pager a{color:var(--main);font-weight:600;text-decoration:none}
+footer{background:var(--tint);color:var(--muted);font-size:.85rem;padding:1.2rem 0;text-align:center;border-top:1px solid var(--line)}
+@media (max-width:700px){.facts,.two,.hero{grid-template-columns:1fr}.steps{flex-direction:column}.steps i{transform:rotate(90deg)}nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;flex:none}.banner{padding:2rem 0}h2{font-size:1.45rem}.view{padding:1.4rem 0 2.5rem}}
+@media not all{
+:root{--text:#111;--muted:#333}
+::selection{background:var(--sky);color:#fff}
+body{background:#fff;color:#111;font:17px/1.7 Georgia,"Times New Roman",serif}
+.view{padding:3rem 0 4rem}
+.view h2{font:900 clamp(2.3rem,7vw,4.8rem)/.95 Georgia,serif;letter-spacing:-.03em;text-transform:uppercase;color:var(--main);margin:0 0 2rem;padding-bottom:1.1rem;border-bottom:8px solid #111}
+.view h2::before{display:block;font:700 .78rem "Courier New",monospace;letter-spacing:.2em;color:var(--sky);margin-bottom:.9rem}
+#v-introducao h2::before{content:"02 / INTRODUÇÃO"}
+#v-objectivos h2::before{content:"03 / OBJECTIVOS"}
+#v-desenvolvimento h2::before{content:"04 / DESENVOLVIMENTO"}
+#v-solucoes h2::before{content:"05 / SOLUÇÕES"}
+#v-recomendacoes h2::before{content:"06 / RECOMENDAÇÕES"}
+#v-conclusao h2::before{content:"07 / CONCLUSÃO"}
+#v-referencias h2::before{content:"08 / REFERÊNCIAS"}
+.view h2+p{font-size:1.3rem;line-height:1.5}
+.view h3{font:700 .85rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.14em;color:#111;margin:2.4rem 0 .7rem;padding-top:.7rem;border-top:3px solid #111}
+th,td{border:2px solid #111;padding:.7rem .9rem}
+th{background:#111;color:#fff;font:700 .78rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.1em}
+tr:nth-child(even) td{background:transparent}
+.note,.poster{border:3px solid #111;border-radius:0;box-shadow:8px 8px 0 var(--sky)}
+.note{background:#fff;padding:1.3rem}
+.poster li,.steps div{border-radius:0}
+.steps div{border:3px solid #111}
+.facts{border:3px solid #111;gap:0}
+.facts div{padding:1.4rem;border-right:3px solid #111}
+.facts div:last-child{border:0}
+.facts b{font:900 3.4rem/1 Georgia,serif;color:var(--main)}
+.banner{background:var(--main);color:#fff;border:0;padding:4rem 0}
+.banner h1{font:900 clamp(2.4rem,7vw,4.6rem)/.93 Georgia,serif;letter-spacing:-.035em;text-transform:uppercase;color:#fff;max-width:none;overflow-wrap:break-word}
+.banner p{color:#fff;font-size:1.2rem;max-width:560px}
+.btn{background:#fff;color:var(--main);border:3px solid #111;border-radius:0;box-shadow:6px 6px 0 var(--sky);font:700 .85rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.1em;padding:.8rem 1.4rem}
+.pager{border-top:8px solid #111;padding-top:1.2rem}
+.pager a{font:700 .85rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.1em;color:#111;border-bottom:3px solid var(--sky)}
+footer{background:#111;color:#fff;border:0;font:.76rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.08em}
+@media (min-width:901px){
+body{padding-left:290px}
+body::before{display:none}
+header{position:fixed;left:0;top:0;bottom:0;width:290px;overflow-y:auto;background:var(--main)}
+header .wrap{max-width:none;padding:1.8rem 1.4rem;min-height:100%}
+.top{display:block;padding:0}
+.logo{display:block;font:900 1.75rem/1.02 Georgia,serif;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:.8rem}
+.sub{display:block;font:.72rem "Courier New",monospace;text-transform:uppercase;letter-spacing:.12em;color:#fff;opacity:.8;margin-bottom:1.2rem}
+.pal{margin-bottom:1.8rem;flex-wrap:wrap}
+nav{display:block;counter-reset:m;padding:0}
+nav a{display:block;counter-increment:m;border-radius:0;margin:0;padding:.6rem .2rem;border-top:1px solid rgba(255,255,255,.3);font:600 .98rem Georgia,serif;color:#fff;background:none}
+nav a::before{content:"0" counter(m);font:.72rem "Courier New",monospace;margin-right:.9rem;opacity:.75}
+nav a:hover{background:none;padding-left:.6rem}
+nav a.on{background:#fff;color:var(--main);padding-left:.7rem}
+}
+@media (max-width:700px){.facts div{border-right:0;border-bottom:3px solid #111}.facts div:last-child{border:0}.banner{padding:2.4rem 0}.view{padding:2rem 0 3rem}}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="top"><a class="logo" href="#inicio">Ansiedade e stress nos estudantes</a><span class="sub">Tema 14 · Saúde mental</span></div>
+<nav id="nav"><a href="#inicio">Início</a><a href="#introducao">Introdução</a><a href="#objectivos">Objectivos</a><a href="#desenvolvimento">Desenvolvimento</a><a href="#solucoes">Soluções</a><a href="#recomendacoes">Recomendações</a><a href="#conclusao">Conclusão</a><a href="#referencias">Referências</a></nav>
+</div></header>
+
+<section class="view" id="v-inicio" style="padding:0">
+<div class="banner"><div class="wrap hero"><div>
+<h1>Quando estudar pesa mais do que devia</h1>
+<p>Na escola há alunos que dormem mal antes dos testes, que têm medo de falhar e que não falam disto com ninguém. Escolhemos este tema porque o vemos à nossa volta. Neste website explicamos o que é a ansiedade e o stress nos estudantes, de onde vêm e o que se pode fazer na escola e em casa.</p>
+<a class="btn" href="#introducao">Começar a ler</a>
+</div>
+<svg class="il" viewBox="0 0 300 260" role="img" aria-label="Ilustração: dois estudantes a conversar">
+<circle class="c" cx="150" cy="130" r="122"/>
+<circle class="a" cx="105" cy="118" r="24"/>
+<path class="a" d="M63 208c0-32 19-52 42-52s42 20 42 52z"/>
+<circle class="b" cx="196" cy="122" r="22"/>
+<path class="b" d="M158 208c0-30 18-48 38-48s38 18 38 48z"/>
+<rect class="d" x="118" y="40" width="64" height="40" rx="12"/>
+<path class="d" d="M136 79l-8 14 22-14z"/>
+<path class="b" d="M150 70c-9-6-14-10-14-16a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 6-5 10-14 16z" style="stroke:none"/>
+<path d="M48 208h204" stroke="var(--main)" stroke-width="3" fill="none"/>
+</svg>
+</div></div>
+<div class="wrap">
+<div class="facts">
+<div><b>1 em 7</b>adolescentes dos 10 aos 19 anos tem algum problema de saúde mental, segundo a Organização Mundial da Saúde.</div>
+<div><b>Ansiedade</b>é a perturbação emocional mais frequente nesta idade: cerca de 4% dos 10 aos 14 anos e 5% dos 15 aos 19, segundo a OMS.</div>
+</div>
+</div>
+</section>
+
+<section class="view" id="v-introducao"><div class="wrap">
+<h2>Introdução</h2>
+<p>Passamos boa parte da adolescência na escola. É lá que aprendemos e fazemos amizades, mas também é lá que somos avaliados todos os dias. Com muitos testes, turmas cheias e a expectativa de passar de classe, é normal ficar preocupado. O problema começa quando essa preocupação não passa.</p>
+<h3>O que queremos dizer com…</h3>
+<div class="scroll"><table>
+<tr><th>Saúde mental</th><td>Estar bem emocionalmente, conseguir lidar com os problemas do dia-a-dia, estudar e dar-se com os outros.</td></tr>
+<tr><th>Stress</th><td>A reacção do corpo quando sente muita exigência. Um pouco ajuda-nos a concentrar. Demais cansa e faz mal.</td></tr>
+<tr><th>Ansiedade</th><td>Preocupação forte e constante, muitas vezes com medo do que vai acontecer, que atrapalha a vida normal.</td></tr>
+</table></div>
+<h3>Stress bom e stress mau</h3>
+<p>Nem todo o stress é prejudicial. Antes de um teste, um pouco de nervosismo põe-nos atentos e dá energia para estudar. O stress passa a ser um problema quando dura semanas, quando não conseguimos descansar e quando começa a afectar o sono, o humor e as notas. É nessa altura que se transforma, muitas vezes, em ansiedade.</p>
+<h3>Porque interessa à escola</h3>
+<p>Um aluno ansioso tem dificuldade em prestar atenção e em lembrar-se da matéria. Também falta mais e pode acabar por desistir. Por isso o assunto interessa a professores e à direcção, e não apenas à família.</p>
+<p>A própria OMS refere que a ansiedade e a depressão podem afectar muito a assiduidade e o rendimento escolar.</p>
+<div class="pager"><a href="#inicio">← Início</a><a href="#objectivos">Objectivos →</a></div>
+</div></section>
+
+<section class="view" id="v-objectivos"><div class="wrap">
+<h2>Objectivos</h2>
+<p><b>Objectivo geral:</b> informar a comunidade escolar sobre a ansiedade e o stress nos estudantes e sugerir medidas de prevenção e de apoio.</p>
+<p><b>Objectivos específicos:</b></p>
+<ol>
+<li>Explicar o que são saúde mental, stress e ansiedade.</li>
+<li>Descobrir as causas mais comuns na vida escolar.</li>
+<li>Mostrar como reconhecer os sinais de alerta.</li>
+<li>Perceber como o problema afecta as notas e a presença nas aulas.</li>
+<li>Propor soluções para alunos, professores, famílias e direcção.</li>
+<li>Contribuir para que pedir ajuda deixe de ser motivo de vergonha.</li>
+</ol>
+<div class="pager"><a href="#introducao">← Introdução</a><a href="#desenvolvimento">Desenvolvimento →</a></div>
+</div></section>
+
+<section class="view" id="v-desenvolvimento"><div class="wrap">
+<h2>Desenvolvimento</h2>
+<h3>Como chega a ansiedade</h3>
+<div class="steps"><div>Pressão<small>testes, família, colegas</small></div><i>→</i><div>Stress contínuo<small>sem descanso nem apoio</small></div><i>→</i><div>Ansiedade<small>medo e preocupação</small></div><i>→</i><div>Efeitos na escola<small>notas e faltas</small></div></div>
+<h3>O que acontece no corpo</h3>
+<p>Quando sentimos pressão, o corpo prepara-se para reagir, como se estivesse em perigo. Liberta hormonas, como a adrenalina e o cortisol, o coração bate mais depressa, a respiração fica curta e os músculos tensos. Por isso quem está ansioso pode sentir tremores, suor, aperto no peito ou vontade de ir à casa de banho antes de um teste. Se isto acontece todos os dias, o corpo não descansa e a pessoa fica esgotada.</p>
+<h3>Quando costuma aumentar</h3>
+<ul>
+<li>Na época de testes e de exames.</li>
+<li>Quando se muda de escola ou de classe.</li>
+<li>Quando há apresentações ou perguntas à frente da turma.</li>
+<li>Quando há problemas em casa ou com os colegas ao mesmo tempo que os estudos.</li>
+</ul>
+<h3>Causas</h3>
+<p><b>Na escola:</b> muitos testes seguidos, medo de reprovar, turmas cheias, pressão dos exames.</p>
+<p><b>Entre colegas:</b> bullying, exclusão, cyberbullying e a comparação com o que os outros mostram nas redes sociais.</p>
+<p><b>Em casa:</b> expectativas muito altas dos pais, discussões, falta de dinheiro e muitas tarefas domésticas, que tiram tempo ao estudo.</p>
+<p><b>Na própria pessoa:</b> dormir pouco, não saber organizar o tempo e ter pouca confiança em si.</p>
+<h3>Sinais de alerta</h3>
+<div class="two">
+<div><b>No corpo e nas emoções</b><ul><li>Dores de cabeça ou de barriga sem razão clara</li><li>Dificuldade em adormecer</li><li>Cansaço constante</li><li>Irritação, tristeza, choro fácil</li></ul></div>
+<div><b>No comportamento</b><ul><li>Afastar-se dos amigos</li><li>Faltar às aulas</li><li>Notas que descem de repente</li><li>Deixar de gostar do que gostava</li></ul></div>
+</div>
+<h3>O que mostram estudos feitos em Moçambique</h3>
+<p>O problema também foi estudado no nosso país. Num estudo com estudantes de Psicologia de uma universidade pública do sul de Moçambique, 55% dos participantes mostraram sinais de stress (Matsinhe et al.). Outra investigação rastreou sintomas de ansiedade, depressão e stress em 150 jovens do ensino secundário em Angoche (Aliante et al.). Os dois trabalhos estão nas referências.</p>
+<h3>Formas de ansiedade que aparecem na escola</h3>
+<p><b>Ansiedade perante os testes:</b> medo intenso de falhar, que faz esquecer a matéria que se sabia.</p>
+<p><b>Ansiedade social:</b> medo de falar em frente da turma ou de ser gozado pelos outros.</p>
+<p><b>Preocupação excessiva:</b> pensar sem parar no que pode correr mal, mesmo quando não há motivo claro.</p>
+<h3>Mitos e verdades</h3>
+<div class="scroll"><table>
+<tr><th>O que se diz</th><th>A realidade</th></tr>
+<tr><td>«Quem tem ansiedade está a exagerar.»</td><td>Não. A ansiedade é real e o corpo sente-a de verdade.</td></tr>
+<tr><td>«Só os alunos fracos ficam stressados.»</td><td>Não. Acontece com bons e maus alunos, e às vezes mais com os que se exigem muito.</td></tr>
+<tr><td>«Falar do assunto piora o problema.»</td><td>Não. Falar costuma aliviar e ajuda a encontrar apoio.</td></tr>
+<tr><td>«Com o tempo passa sozinho.»</td><td>Nem sempre. Se dura semanas e atrapalha a vida, convém pedir ajuda.</td></tr>
+</table></div>
+<h3>Consequências na vida escolar</h3>
+<p>A ansiedade prejudica a atenção e a memória, estraga a relação com colegas e professores e faz faltar mais. Nos casos mais graves o aluno desiste da escola, e os problemas de saúde podem continuar na vida adulta.</p>
+<div class="note">Ter ansiedade ou stress não quer dizer que a pessoa é fraca. Quer dizer que está a precisar de apoio.</div>
+<div class="pager"><a href="#objectivos">← Objectivos</a><a href="#solucoes">Soluções →</a></div>
+</div></section>
+
+<section class="view" id="v-solucoes"><div class="wrap">
+<h2>Soluções e medidas de prevenção</h2>
+<div class="poster"><h4>Cinco passos para estudar com menos stress</h4><ol><li>Dormir as horas de que o corpo precisa</li><li>Fazer pausas curtas enquanto se estuda</li><li>Mexer o corpo todos os dias</li><li>Falar com alguém de confiança</li><li>Pedir ajuda cedo, sem vergonha</li></ol></div>
+<h3>No dia-a-dia</h3>
+<ul>
+<li>Dormir as horas necessárias e comer a horas.</li>
+<li>Fazer desporto ou caminhar um pouco, mesmo que seja pouco.</li>
+<li>Fazer um horário de estudo e começar a preparar os testes com antecedência.</li>
+<li>Estudar em blocos curtos, com pausas pelo meio.</li>
+<li>Reduzir o tempo no telemóvel e lembrar que as redes sociais mostram só uma parte da vida das pessoas.</li>
+</ul>
+<h3>Na escola</h3>
+<ul>
+<li>Ter um professor ou conselheiro com quem os alunos possam falar.</li>
+<li>Organizar palestras sobre saúde mental e bullying.</li>
+<li>Formar grupos de colegas que se apoiam.</li>
+<li>Distribuir os testes ao longo do período.</li>
+</ul>
+<h3>Antes, durante e depois do teste</h3>
+<p><b>Na véspera:</b> rever a matéria em vez de estudar a noite toda, preparar o material e dormir cedo.</p>
+<p><b>No dia:</b> comer alguma coisa leve, ler o teste todo com calma, começar pelas perguntas que se sabe e respirar fundo se houver um branco.</p>
+<p><b>Depois:</b> evitar ficar a comparar todas as respostas com os colegas. O que está feito já não se pode mudar, e o melhor é descansar.</p>
+<h3>Respiração para acalmar</h3>
+<p>Quando sentir o coração acelerado antes de um teste: sente-se com as costas direitas, inspire pelo nariz contando até quatro, expire devagar pela boca contando até quatro. Repita cinco vezes.</p>
+<h3>Como ajudar um colega que está mal</h3>
+<ul>
+<li>Ouvir sem interromper e sem julgar.</li>
+<li>Evitar frases como «isso não é nada» ou «tens de ser forte», que fazem a pessoa calar-se.</li>
+<li>Perguntar se quer que o acompanhe a falar com um adulto de confiança.</li>
+<li>Se ele falar em magoar-se, avisar logo um adulto, mesmo que tenha pedido segredo. A segurança vem primeiro.</li>
+</ul>
+<h3>Onde pedir ajuda</h3>
+<p>O primeiro passo é falar com alguém de confiança, como um familiar, um colega ou um professor. Pode-se também procurar o director de turma ou um profissional de saúde. Quem pensar em magoar-se deve pedir ajuda logo e não ficar sozinho.</p>
+<h3>Porque propomos estas soluções</h3>
+<p>As medidas deste capítulo seguem o que a Organização Mundial da Saúde aponta como importante para o bem-estar mental dos adolescentes: ter bons hábitos de sono, fazer exercício, aprender a lidar com as emoções e a resolver problemas, e contar com ambientes de apoio na família e na escola. Escolhemos medidas simples, que não custam dinheiro e que os próprios alunos podem começar a aplicar já, e outras que dependem da escola e das famílias.</p>
+<div class="pager"><a href="#desenvolvimento">← Desenvolvimento</a><a href="#recomendacoes">Recomendações →</a></div>
+</div></section>
+
+<section class="view" id="v-recomendacoes"><div class="wrap">
+<h2>Recomendações</h2>
+<h3>Aos alunos</h3>
+<p>Falar quando algo não está bem, respeitar os colegas, cuidar do sono e procurar ajuda cedo, sem esperar que o problema cresça.</p>
+<h3>Aos professores</h3>
+<p>Evitar marcar muitos testes na mesma semana, reconhecer o esforço dos alunos e não só as notas, e avisar a direcção quando notarem sinais de alerta.</p>
+<h3>Aos encarregados de educação</h3>
+<p>Ouvir os filhos sem os criticar logo, ter expectativas que eles consigam alcançar e dar-lhes um sítio calmo para estudar.</p>
+<h3>À direcção da escola</h3>
+<p>Criar um espaço de aconselhamento, promover campanhas de sensibilização e aplicar regras claras contra o bullying.</p>
+<h3>Aos colegas e amigos</h3>
+<p>Estar atentos a quem anda mais isolado ou diferente, convidar essa pessoa para o grupo e nunca gozar com quem diz que está a passar por um mau momento.</p>
+<div class="pager"><a href="#solucoes">← Soluções</a><a href="#conclusao">Conclusão →</a></div>
+</div></section>
+
+<section class="view" id="v-conclusao"><div class="wrap">
+<h2>Conclusão</h2>
+<p>Pela pesquisa que fizemos, vimos que a ansiedade e o stress são comuns entre estudantes e que têm causas na escola, em casa, entre colegas e na própria pessoa. Quando ninguém ajuda, afectam as notas, as amizades e a saúde.</p>
+<p>Vimos também que há maneiras de prevenir. Dormir bem, organizar os estudos, ter professores atentos, famílias que ouvem e uma escola onde se pode falar do assunto já ajudam muito.</p>
+<h3>Resultados principais da pesquisa</h3>
+<ul>
+<li>Cerca de 1 em cada 7 adolescentes tem algum problema de saúde mental, e a ansiedade é o mais frequente.</li>
+<li>As causas misturam a pressão da escola, os conflitos com colegas, a situação em casa e hábitos pessoais.</li>
+<li>Os sinais aparecem no corpo, nas emoções e no comportamento, e as notas e as faltas costumam ser os primeiros a mostrar que algo está mal.</li>
+<li>As melhores respostas são simples: dormir, organizar o estudo, falar com alguém e pedir ajuda cedo.</li>
+</ul>
+<p>Esperamos que este trabalho ajude os colegas a perceberem que pedir ajuda é normal.</p>
+<div class="pager"><a href="#recomendacoes">← Recomendações</a><a href="#referencias">Referências →</a></div>
+</div></section>
+
+<section class="view" id="v-referencias"><div class="wrap">
+<h2>Referências bibliográficas</h2>
+<ul>
+<li>Organização Mundial da Saúde. <i>Mental health of adolescents</i> (ficha informativa), 1 de Setembro de 2025. <a href="https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health" target="_blank" rel="noopener">who.int</a></li>
+<li>Organização Mundial da Saúde. <i>Anxiety disorders</i> (ficha informativa). <a href="https://www.who.int/news-room/fact-sheets/detail/anxiety-disorders" target="_blank" rel="noopener">who.int</a></li>
+<li>UNICEF. <i>The State of the World’s Children 2021: On My Mind</i>, 2021. <a href="https://data.unicef.org/resources/sowc-2021/" target="_blank" rel="noopener">data.unicef.org</a></li>
+<li>Aliante, G.; Taria, A. N. A. R.; Maurício, J. C. <i>Sintomas de depressão, ansiedade e stress em jovens escolares do ensino secundário durante o surto da COVID-19</i>. Cenas Educacionais, v. 6, 2023 (estudo realizado em Angoche, Moçambique). <a href="https://revistas.uneb.br/index.php/cenaseducacionais/article/download/15018/11435/52470" target="_blank" rel="noopener">revistas.uneb.br</a></li>
+<li>Matsinhe, M. C. E.; Cândido, A. M.; Abacar, M.; Aliante, G. <i>Sintomas de stress em estudantes moçambicanos do curso de Psicologia</i>. Mudanças – Psicologia da Saúde, v. 28, n. 2. <a href="https://pepsic.bvsalud.org/pdf/muda/v28n2/v28n2a01.pdf" target="_blank" rel="noopener">pepsic.bvsalud.org</a></li>
+</ul>
+<h3>Como fizemos a pesquisa</h3>
+<p>Consultámos fichas informativas e relatórios de organizações internacionais de referência, a OMS e a UNICEF, e organizámos a informação por temas: o que é o problema, as causas, os sinais, as consequências e as soluções. Os textos foram escritos por nós, com palavras nossas.</p>
+<p>Não foi possível realizar entrevistas nem questionários no âmbito deste trabalho. Por esse motivo, a pesquisa assentou exclusivamente em fontes documentais, nomeadamente fichas informativas, relatórios e artigos científicos, indicados nas referências bibliográficas.</p>
+<div class="pager"><a href="#conclusao">← Conclusão</a><a href="#inicio">Voltar ao início</a></div>
+</div></section>
+
+<footer><div class="wrap">Este website é informativo e não substitui a ajuda de um profissional de saúde.</div></footer>
+
+<script>
+(function(){
+var ids=["inicio","introducao","objectivos","desenvolvimento","solucoes","recomendacoes","conclusao","referencias"];
+function show(){
+var h=(location.hash||"#inicio").slice(1);if(ids.indexOf(h)<0)h="inicio";
+ids.forEach(function(i){document.getElementById("v-"+i).classList.toggle("on",i===h)});
+var l=document.querySelectorAll("#nav a");
+for(var k=0;k<l.length;k++){l[k].classList.toggle("on",l[k].getAttribute("href")==="#"+h)}
+window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",show);show();
+})();
+</script>
+</body>
+</html>
